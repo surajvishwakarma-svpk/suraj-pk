@@ -10,7 +10,7 @@
 <body onload="checkAdmin()">
 
   <header>
-    <h1>Mini Flipkart Admin</h1>
+    <h1>Mobile World Admin</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="products.html">Products</a>
@@ -19,6 +19,7 @@
   </header>
 
   <div class="container">
+    <!-- ================= Manage Products ================= -->
     <h2>Manage Products</h2>
 
     <form id="add-product-form" onsubmit="addProduct(event)">
@@ -29,6 +30,13 @@
     </form>
 
     <ul id="admin-product-list"></ul>
+
+    <hr>
+
+    <!-- ================= Manage Orders ================= -->
+    <h2>Orders</h2>
+    <div id="order-notification" style="color: red; font-weight: bold;"></div>
+    <ul id="admin-order-list"></ul>
   </div>
 
   <footer>

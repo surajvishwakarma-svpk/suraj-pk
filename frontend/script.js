@@ -263,3 +263,47 @@ document.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById("cart-items")) loadCart();
   if (document.getElementById("admin-product-list")) loadAdminProducts();
 });
+/* ===== Admin Orders ===== */
+async function loadAdminOrders() {
+  try {
+    const res = await fetch("http://localhost:5000/api/orders");
+    const orders = await res.json();
+    const container = document.getElementById("admin-order-list");
+    const notify = document.getElementById("order-notification");
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    if (orders.length === 0) {
+      container.innerHTML = "<li>No orders yet.</li>";
+      notify.innerText = "";
+      return;
+    }
+
+    // Show "new order" message for recent one
+    notify.innerText = "New Orders Available!";
+
+    orders.forEach(order => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <strong>${order.customerName}</strong> (${order.customerEmail})<br>
+        Total: ₹${order.total}<br>
+        Products: ${order.items
+          .map(i => `${i.name} (x${i.quantity})`)
+          .join(", ")}<br>
+        <small>Placed: ${new Date(order.createdAt).toLocaleString()}</small>
+      `;
+      container.appendChild(li);
+    });
+  } catch (err) {
+    console.error("Error loading orders", err);
+  }
+}
+
+// Make sure admin loads orders automatically
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.getElementById("admin-order-list")) {
+    loadAdminOrders();
+  }
+});

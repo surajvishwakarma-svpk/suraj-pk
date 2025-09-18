@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 const MONGO_URI = "mongodb+srv://sv894871_db_user:l2kGcVJFMRsp6vEJ@cluster0.cd4fsai.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
-console.log("🔍 db.js loaded...");
+// console.log("🔍 db.js loaded...");
 
 const connectDB = async () => {
   try {
